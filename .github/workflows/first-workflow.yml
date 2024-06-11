@@ -8,7 +8,7 @@ jobs:
         steps:
             - run: echo Hola 1
             - run: echo Hola 2
-    cow:
+    job2:
         needs: job1
         name: Cowsays
         runs-on: ubuntu-latest
