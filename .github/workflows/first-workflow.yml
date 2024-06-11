@@ -11,7 +11,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - run: echo Hola 1
-            - run: echo "HELLO='Hola ${{ env.MY_NAME }}'" >> $GITHUB_ENV
+            - run: echo "HELLO='Hola ${MY_NAME}'" >> $GITHUB_ENV
     job2:
         needs: job1
         name: Cowsays
