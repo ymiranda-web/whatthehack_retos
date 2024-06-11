@@ -11,7 +11,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - run: echo Hola 1
-            - run: echo "HELLO='Hola ${MY_NAME}'" >> $GITHUB_ENV
+            - run: echo "Hola ${{ env.MY_NAME }}"
     job2:
         needs: job1
         name: Cowsays
@@ -19,8 +19,6 @@ jobs:
         steps:
         - name: Ship it
           uses: mscoutermarsh/cowsays-action@master
-          env:
-            MY_INPUT: ${{ env.HELLO }} 
           with:
-            text: '$MY_INPUT'
+            text: '${{ env.VARIABLE_REPOSITORIO }}'
             color: 'red'
