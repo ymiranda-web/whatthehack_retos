@@ -2,9 +2,20 @@
     "name": "C# (.NET)",
     "image": "mcr.microsoft.com/devcontainers/dotnet:0-6.0",
     "features": {
-      "ghcr.io/devcontainers/features/azure-cli:1": {
+        "ghcr.io/devcontainers/features/azure-cli:1": {
         "installBicep": true,
         "version": "latest"
-      }
+        }
+    },
+    "customizations": {
+    // Configure properties specific to VS Code.
+        "vscode": {
+            // Add the IDs of extensions you want installed when the container is created.
+            "extensions": [
+            "github.vscode-github-actions",
+            "ms-vscode.azurecli",
+            "ms-dotnettools.vscode-dotnet-runtime"
+            ]
+        }
     }
-  }
+}
