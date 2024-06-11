@@ -1,7 +1,8 @@
 name: "Primer Actions"
 on: 
     workflow_dispatch:
-
+    issues:
+        types: [opened]
 jobs:
     job1:
         runs-on: ubuntu-latest
