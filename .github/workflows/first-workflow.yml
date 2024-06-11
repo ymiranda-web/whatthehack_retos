@@ -3,12 +3,15 @@ on:
     workflow_dispatch:
     issues:
         types: [opened]
+
+env:
+    MY_NAME: "Yair Miranda"
 jobs:
     job1:
         runs-on: ubuntu-latest
         steps:
             - run: echo Hola 1
-            - run: echo Hola 2
+            - run: echo "HELLO='Hola ${{ env.MY_NAME }}'" >> $GITHUB_ENV
     job2:
         needs: job1
         name: Cowsays
@@ -16,6 +19,8 @@ jobs:
         steps:
         - name: Ship it
           uses: mscoutermarsh/cowsays-action@master
+          env:
+            MY_INPUT: ${{ env.HELLO }} 
           with:
-            text: 'Hola a todos!!!!'
+            text: '$MY_INPUT'
             color: 'red'
