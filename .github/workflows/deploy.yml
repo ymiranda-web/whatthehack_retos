@@ -1,0 +1,33 @@
+name: Azure ARM
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Entorno de ejecución'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - prod
+          - dev
+          - test
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checkout code
+    - uses: actions/checkout@main
+
+      # Log into Azure
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Deploy ARM template
+    - name: Run ARM deploy
+      uses: azure/arm-deploy@v1
+      with:
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: ./InfrastructureAsCode/main.bicep
+        parameters: environment=${{ inputs.environment }} 
